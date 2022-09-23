@@ -1,0 +1,14 @@
+{
+     "name": "meteosource",
+     "version": "0.0.1",
+     "author": "Meteosource <info@meteosource.com> (https://www.meteosource.com)",
+     "dependencies": {
+          "luxon": "^2.4.0",
+          "mocha": "^10.0.0"
+     },
+     "main": "meteosource.js",
+     "scripts": {
+          "test": "mocha"
+     },
+     "files": ["README.md", "index.js", "test.js"]
+}
