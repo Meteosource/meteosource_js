@@ -9,7 +9,7 @@ Javascript wrapper library for [Meteosource weather API](https://www.meteosource
 The source code is available in the file ``meteosource.js`` and requires the datetime library ``luxon``.
 
 ```HTML
-<script src="https://www.meteosource.com/TODO/meteosource.js"></script>
+<script src="https://www.meteosource.com/js/libs/meteosource.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
 
 <script>document.write(meteosource.version)</script> <!-- returns 0.1 -->
@@ -20,9 +20,7 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 To add the library to your project, run the following command in the directory tree of the project:
 
 ```shell
-$ npm install git+ssh://git@gitlab.meteocentrum.cz:23/kuba.marousek/meteosource_js.git
-$ node -p 'require("meteosource").version'
-0.1
+$ npm install meteosource
 ```
 
 
