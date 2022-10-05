@@ -25,9 +25,12 @@
                 this.detail = msg.toString()
             }
         }
+        toString() {
+            return "MeteosourceError: " + this.detail + " (code " + this.code + ")"
+        }
     }
 
-    let tiersAvailable = ["free", "startup", "standard", "flexi", "premium"]
+    let tiersAvailable = ["free", "startup", "standard", "flexi"]
     Object.freeze(tiersAvailable)
 
     // determine function for an HTTP request
@@ -38,7 +41,7 @@
             try {
                 res = await fetch(url)
             } catch (e) {
-                throw {code: -1, detail: e.toString()}
+                throw new MeteosourceError({code: -1, detail: e.toString()})
             }
             let statusCode = res.status
             let jsonRoot
@@ -72,7 +75,7 @@
                     }).on("error", e => reject(e.message))
                 })
             } catch(e) {
-                throw {code: statusCode, detail: e.toString()}
+                throw new MeteosourceError({code: statusCode, detail: e.toString()})
             }
 
             let jsonRoot
@@ -86,7 +89,7 @@
                 return jsonRoot
             } else {
                 jsonRoot.code = statusCode
-                throw jsonRoot
+                throw new MeteosourceError(jsonRoot)
             }
         }
     } else {
@@ -126,7 +129,6 @@
             this.#initialized = true
         }
 
-        // TODO docs
         async getPointForecast(options) {
             this.#checkInitialized()
             this.#checkLimitedOptions(options, ["lat", "lon", "placeId", "sections", "tz", "lang", "units"])
