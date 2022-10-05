@@ -21,6 +21,10 @@ To add the library to your project, run the following command in the directory t
 
 ```shell
 $ npm install meteosource
+$ node
+> meteosource = require("meteosource")
+> meteosource.version
+1.0.1
 ```
 
 
