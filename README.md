@@ -20,6 +20,7 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 To add the library to your project, run the following command in the directory tree of the project:
 
 ```shell
+$ npm init
 $ npm install meteosource
 $ node
 > meteosource = require("meteosource")
