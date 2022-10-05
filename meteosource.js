@@ -93,7 +93,7 @@
             }
         }
     } else {
-        throw new MeteosourceError("cannot use HTTP request methods; supporting fetch() or require('https')")
+        throw new MeteosourceError("Cannot use HTTP request methods; supporting fetch() or require('https')")
     }
 
     class Meteosource {
@@ -105,15 +105,15 @@
 
         constructor(apiKey, tier, baseUrl = "https://www.meteosource.com/api/v1/") {
             if(typeof apiKey !== "string")
-                throw new MeteosourceError("wrong type of the apiKey parameter; is " + typeof apiKey)
+                throw new MeteosourceError("Wrong type of the apiKey parameter; is " + typeof apiKey)
             if(typeof tier !== "string")
-                throw new MeteosourceError("wrong type of the tier parameter; is " + typeof tier)
+                throw new MeteosourceError("Wrong type of the tier parameter; is " + typeof tier)
             if(typeof baseUrl !== "string")
-                throw new MeteosourceError("wrong type of the baseUrl parameter; is " + typeof tier)
+                throw new MeteosourceError("Wrong type of the baseUrl parameter; is " + typeof tier)
             if(apiKey === "")
-                throw new MeteosourceError("the apiKey parameter is empty")
+                throw new MeteosourceError("The apiKey parameter is empty")
             if(!tiersAvailable.includes(tier))
-                throw new MeteosourceError("tier " + tier + " does not exist or is not supported")
+                throw new MeteosourceError("Tier " + tier + " does not exist or is not supported")
 
             // load luxon library
             if(typeof window === "object" && typeof window.luxon === "object")
@@ -121,7 +121,7 @@
             else if(typeof require === "function")
                 this.#luxon = require("luxon")
             else
-                throw new MeteosourceError("luxon library is required")
+                throw new MeteosourceError("Luxon library is required")
 
             this.#apiKey = apiKey
             this.#tier = tier
@@ -226,9 +226,9 @@
                 date = this.#luxon.DateTime.fromISO(date + utcPostfix)
 
             if(!this.#luxon.DateTime.isDateTime(date))
-                throw new MeteosourceError("either a string (DateTime ISO format like YYYY-MM-DDTHH:mm:ss) or a luxon.DateTime required")
+                throw new MeteosourceError("Either a string (DateTime ISO format like YYYY-MM-DDTHH:mm:ss) or a luxon.DateTime required")
             else if(!date.isValid)
-                throw new MeteosourceError("passed DateTime (or string) is not valid")
+                throw new MeteosourceError("Passed DateTime (or string) is not valid")
             else
                 return date
         }
@@ -271,11 +271,11 @@
                 else
                     datesToLoad.push(date)
             } else {
-                throw new MeteosourceError("either date, or dateFrom+dateTo parameters must be specified")
+                throw new MeteosourceError("Either date, or dateFrom+dateTo parameters must be specified")
             }
 
             if(datesToLoad.length === 0)
-                throw new MeteosourceError("no dates range to load")
+                throw new MeteosourceError("No dates range to load")
 
             let completeRes = null
             let dateIdx = 0
@@ -345,13 +345,13 @@
             optionsAllowed.forEach(opt => optionsAllowedHash[opt] = 1)
             Object.keys(options).forEach(opt => {
                 if(!optionsAllowedHash[opt])
-                    throw new MeteosourceError("cannot use option '" + opt + "'")
+                    throw new MeteosourceError("Cannot use option '" + opt + "'")
             })
         }
 
         #checkInitialized() {
             if(!this.#initialized)
-                throw new MeteosourceError("cannot use, there was an error in the constructor")
+                throw new MeteosourceError("Cannot use, there was an error in the constructor")
         }
     }
 
