@@ -12,7 +12,7 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 <script src="https://www.meteosource.com/js/libs/meteosource.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
 
-<script>document.write(meteosource.version)</script> <!-- returns 0.1 -->
+<script>document.write(meteosource.version)</script> <!-- returns 1.0.1 -->
 ```
 
 ### Installation: NPM (Node.js)
@@ -20,7 +20,12 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 To add the library to your project, run the following command in the directory tree of the project:
 
 ```shell
+$ npm init
 $ npm install meteosource
+$ node
+> meteosource = require("meteosource")
+> meteosource.version
+'1.0.1'
 ```
 
 
