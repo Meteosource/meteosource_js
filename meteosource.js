@@ -426,7 +426,7 @@
     }
 
     exports.Meteosource = Meteosource
-    exports.version = "1.0.1"
+    exports.version = "1.1.0"
     exports.tiersAvailable = tiersAvailable
 
     return exports
