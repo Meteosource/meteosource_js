@@ -10,7 +10,7 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 
 ```HTML
 <script src="https://www.meteosource.com/js/libs/meteosource.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
 <script>document.write(meteosource.version)</script> <!-- returns 1.0.1 -->
 ```
