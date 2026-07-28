@@ -147,13 +147,12 @@
             res.toString = function() {
                 return "<Forecast for lat: " + res.lat + ", lon: " + res.lon + ">"
             }
-            if(res.hourly !== null) {
+            if(res.hourly !== null && res.hourly !== undefined) {
                 res.hourly.toString = function() {
                     return "<Hourly data with " + res.hourly.data.length + " timesteps from " +
                         res.hourly.data[0].date.toISO().substr(0, 19) + " to " + res.hourly.data[res.hourly.data.length-1].date.toISO().substr(0, 19)
                 }
                 let hourStr2hourData = {}
-                let luxon = this.#luxon
                 res.hourly.data.forEach(hourData => {
                     hourStr2hourData[hourData.date] = hourData
                     hourData.date = this.#convertCheckDateTime(hourData.date, true).setZone(usedTimezone)
@@ -163,29 +162,27 @@
                     return hourStr2hourData[hourDate.setZone("UTC").startOf("hour").toISO().substr(0, 19)]
                 }
             }
-            if(res.daily !== null) {
+            if(res.daily !== null && res.daily !== undefined) {
                 res.daily.toString = function() {
                     return "<Daily data with " + res.daily.data.length + " steps from " +
                         res.daily.data[0].day.toISO().substr(0, 10) +
                         " to " + res.daily.data[res.daily.data.length-1].day.toISO().substr(0, 10)
                 }
                 let dayStr2dayData = {}
-                let luxon = this.#luxon
                 res.daily.data.forEach(dayData => {
                     dayStr2dayData[dayData.day] = dayData
-                    dayData.day = luxon.DateTime.fromISO(dayData.day, {zone: usedTimezone})
+                    dayData.day = this.#luxon.DateTime.fromISO(dayData.day, {zone: usedTimezone})
                 })
                 res.daily.getData = day => {
                     day = this.#convertCheckDateTime(day, false)
                     return dayStr2dayData[day.toISO().substr(0, 10)]
                 }
             }
-            if(res.minutely !== null) {
-                let luxon = this.#luxon
+            if(res.minutely !== null && res.minutely !== undefined) {
                 let str2minuteData = {}
                 res.minutely.data.forEach(minuteData => {
                     str2minuteData[minuteData.date] = minuteData
-                    minuteData.date = luxon.DateTime.fromISO(minuteData.date + "Z", {zone: usedTimezone})
+                    minuteData.date = this.#luxon.DateTime.fromISO(minuteData.date + "Z", {zone: usedTimezone})
                 })
                 res.minutely.toString = function() {
                     return "<Minutely data with " + res.minutely.data.length + " timesteps from " +
@@ -197,12 +194,12 @@
                     return str2minuteData[date.setZone("UTC").startOf("minute").toISO().substr(0, 19)]
                 }
             }
-            if(res.current !== null) {
+            if(res.current !== null && res.current !== undefined) {
                 res.current.toString = function() {
                     return "<Current data>"
                 }
             }
-            if(res.alerts !== null) {
+            if(res.alerts !== null && res.alerts !== undefined) {
                 res.alerts.data.forEach(alertData => {
                     alertData.onset = this.#luxon.DateTime.fromISO(alertData.onset + "Z", {zone: usedTimezone})
                     alertData.expires = this.#luxon.DateTime.fromISO(alertData.expires + "Z", {zone: usedTimezone})
