@@ -1,0 +1,297 @@
+{
+    "lat": "51.50853N",
+    "lon": "0.12574W",
+    "elevation": 25,
+    "timezone": "UTC",
+    "units": "metric",
+    "data": [
+        {
+            "date": "2015-09-07T00:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 10.6,
+            "wind": {
+                "speed": 3.0,
+                "gusts": 5.4,
+                "angle": 327,
+                "dir": "NNW"
+            }
+        },
+        {
+            "date": "2015-09-07T01:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 10.0,
+            "wind": {
+                "speed": 2.7,
+                "gusts": 4.9,
+                "angle": 323,
+                "dir": "NW"
+            }
+        },
+        {
+            "date": "2015-09-07T02:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 9.3,
+            "wind": {
+                "speed": 2.6,
+                "gusts": 4.5,
+                "angle": 318,
+                "dir": "NW"
+            }
+        },
+        {
+            "date": "2015-09-07T03:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 8.8,
+            "wind": {
+                "speed": 2.5,
+                "gusts": 4.2,
+                "angle": 319,
+                "dir": "NW"
+            }
+        },
+        {
+            "date": "2015-09-07T04:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 8.5,
+            "wind": {
+                "speed": 2.5,
+                "gusts": 4.1,
+                "angle": 319,
+                "dir": "NW"
+            }
+        },
+        {
+            "date": "2015-09-07T05:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 8.0,
+            "wind": {
+                "speed": 2.5,
+                "gusts": 4.1,
+                "angle": 323,
+                "dir": "NW"
+            }
+        },
+        {
+            "date": "2015-09-07T06:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 8.2,
+            "wind": {
+                "speed": 2.7,
+                "gusts": 5.2,
+                "angle": 331,
+                "dir": "NNW"
+            }
+        },
+        {
+            "date": "2015-09-07T07:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 9.8,
+            "wind": {
+                "speed": 2.7,
+                "gusts": 6.1,
+                "angle": 338,
+                "dir": "NNW"
+            }
+        },
+        {
+            "date": "2015-09-07T08:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 12.0,
+            "wind": {
+                "speed": 2.7,
+                "gusts": 6.5,
+                "angle": 353,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T09:00:00",
+            "weather": "sunny",
+            "icon": 2,
+            "temperature": 14.2,
+            "wind": {
+                "speed": 2.9,
+                "gusts": 7.2,
+                "angle": 5,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T10:00:00",
+            "weather": "partly_sunny",
+            "icon": 4,
+            "temperature": 15.9,
+            "wind": {
+                "speed": 3.4,
+                "gusts": 8.8,
+                "angle": 12,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T11:00:00",
+            "weather": "mostly_cloudy",
+            "icon": 5,
+            "temperature": 16.9,
+            "wind": {
+                "speed": 4.0,
+                "gusts": 9.2,
+                "angle": 1,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T12:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 17.5,
+            "wind": {
+                "speed": 4.4,
+                "gusts": 9.3,
+                "angle": 1,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T13:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 17.3,
+            "wind": {
+                "speed": 4.6,
+                "gusts": 9.1,
+                "angle": 5,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T14:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 17.1,
+            "wind": {
+                "speed": 4.4,
+                "gusts": 8.9,
+                "angle": 9,
+                "dir": "N"
+            }
+        },
+        {
+            "date": "2015-09-07T15:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 16.7,
+            "wind": {
+                "speed": 4.2,
+                "gusts": 8.1,
+                "angle": 12,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T16:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 16.3,
+            "wind": {
+                "speed": 3.8,
+                "gusts": 8.0,
+                "angle": 14,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T17:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 15.9,
+            "wind": {
+                "speed": 3.5,
+                "gusts": 6.8,
+                "angle": 18,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T18:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 15.4,
+            "wind": {
+                "speed": 2.8,
+                "gusts": 5.1,
+                "angle": 21,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T19:00:00",
+            "weather": "overcast",
+            "icon": 7,
+            "temperature": 14.5,
+            "wind": {
+                "speed": 2.6,
+                "gusts": 5.0,
+                "angle": 21,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T20:00:00",
+            "weather": "mostly_cloudy",
+            "icon": 5,
+            "temperature": 13.0,
+            "wind": {
+                "speed": 2.6,
+                "gusts": 4.9,
+                "angle": 21,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T21:00:00",
+            "weather": "mostly_cloudy",
+            "icon": 5,
+            "temperature": 12.4,
+            "wind": {
+                "speed": 2.6,
+                "gusts": 4.4,
+                "angle": 22,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T22:00:00",
+            "weather": "mostly_cloudy",
+            "icon": 5,
+            "temperature": 11.3,
+            "wind": {
+                "speed": 2.3,
+                "gusts": 4.3,
+                "angle": 26,
+                "dir": "NNE"
+            }
+        },
+        {
+            "date": "2015-09-07T23:00:00",
+            "weather": "partly_sunny",
+            "icon": 4,
+            "temperature": 10.5,
+            "wind": {
+                "speed": 2.3,
+                "gusts": 3.7,
+                "angle": 33,
+                "dir": "NNE"
+            }
+        }
+    ]
+}

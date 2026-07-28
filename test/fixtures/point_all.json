@@ -1,0 +1,64 @@
+{
+    "lat": "50.088N",
+    "lon": "14.42076E",
+    "elevation": 202,
+    "timezone": "UTC",
+    "units": "metric",
+    "current": {
+        "icon": "sunny",
+        "icon_num": 2,
+        "summary": "Sunny",
+        "temperature": 24.5,
+        "wind": {"speed": 2.1, "angle": 300, "dir": "WNW"},
+        "precipitation": {"total": 0.0, "type": "none"},
+        "cloud_cover": 5
+    },
+    "hourly": {
+        "data": [
+            {"date": "2022-08-12T10:00:00", "weather": "sunny", "icon": 2, "summary": "Sunny", "temperature": 24.5, "wind": {"speed": 2.1, "dir": "WNW", "angle": 300}},
+            {"date": "2022-08-12T11:00:00", "weather": "sunny", "icon": 2, "summary": "Sunny", "temperature": 25.6, "wind": {"speed": 2.4, "dir": "WNW", "angle": 295}},
+            {"date": "2022-08-12T12:00:00", "weather": "partly_sunny", "icon": 4, "summary": "Partly sunny", "temperature": 26.4, "wind": {"speed": 2.8, "dir": "W", "angle": 280}},
+            {"date": "2022-08-12T13:00:00", "weather": "partly_sunny", "icon": 4, "summary": "Partly sunny", "temperature": 27.0, "wind": {"speed": 3.0, "dir": "W", "angle": 275}}
+        ]
+    },
+    "daily": {
+        "data": [
+            {"day": "2022-08-12", "weather": "sunny", "icon": 2, "summary": "Sunny, more clouds in the evening.", "all_day": {"temperature": 25.1, "temperature_min": 15.2, "temperature_max": 27.4}},
+            {"day": "2022-08-13", "weather": "partly_sunny", "icon": 4, "summary": "Partly sunny, fewer clouds in the afternoon.", "all_day": {"temperature": 24.0, "temperature_min": 14.8, "temperature_max": 26.9}},
+            {"day": "2022-08-14", "weather": "cloudy", "icon": 7, "summary": "Cloudy, light rain in the evening.", "all_day": {"temperature": 21.3, "temperature_min": 14.1, "temperature_max": 24.2}}
+        ]
+    },
+    "minutely": {
+        "summary": "No precipitation until the end of the forecast period.",
+        "data": [
+            {"date": "2022-08-12T10:00:00", "precipitation": 0.0},
+            {"date": "2022-08-12T10:01:00", "precipitation": 0.0},
+            {"date": "2022-08-12T10:02:00", "precipitation": 0.0},
+            {"date": "2022-08-12T10:03:00", "precipitation": 0.0}
+        ]
+    },
+    "alerts": {
+        "data": [
+            {
+                "event": "Heat warning",
+                "onset": "2022-08-12T08:00:00",
+                "expires": "2022-08-12T20:00:00",
+                "sender": "Test weather service",
+                "certainty": "Likely",
+                "severity": "Moderate",
+                "headline": "Heat warning issued for the area",
+                "description": "High temperatures expected."
+            },
+            {
+                "event": "Thunderstorm watch",
+                "onset": "2022-08-13T00:00:00",
+                "expires": "2022-08-13T12:00:00",
+                "sender": "Test weather service",
+                "certainty": "Possible",
+                "severity": "Severe",
+                "headline": "Thunderstorms possible overnight",
+                "description": "Scattered thunderstorms may develop."
+            }
+        ]
+    }
+}

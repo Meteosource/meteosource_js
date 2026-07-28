@@ -1,0 +1,142 @@
+{
+    "lat": "51.50853N",
+    "lon": "0.12574W",
+    "elevation": 82,
+    "timezone": "Europe/London",
+    "units": "us",
+    "current": {
+        "icon": "sunny",
+        "icon_num": 2,
+        "summary": "Sunny",
+        "temperature": 76.7,
+        "wind": {
+            "speed": 7.2,
+            "angle": 60,
+            "dir": "ENE"
+        },
+        "precipitation": {
+            "total": 0.0,
+            "type": "none"
+        },
+        "cloud_cover": 0.0
+    },
+    "hourly": {
+        "data": [
+            {
+                "date": "2022-08-12T10:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 76.7,
+                "wind": {
+                    "speed": 7.2,
+                    "dir": "ENE",
+                    "angle": 60
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            },
+            {
+                "date": "2022-08-12T11:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 81.7,
+                "wind": {
+                    "speed": 7.0,
+                    "dir": "ENE",
+                    "angle": 65
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            },
+            {
+                "date": "2022-08-12T12:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 85.7,
+                "wind": {
+                    "speed": 6.9,
+                    "dir": "ENE",
+                    "angle": 69
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            },
+            {
+                "date": "2022-08-12T13:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 88.4,
+                "wind": {
+                    "speed": 7.4,
+                    "dir": "ENE",
+                    "angle": 78
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            },
+            {
+                "date": "2022-08-12T14:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 89.8,
+                "wind": {
+                    "speed": 9.2,
+                    "dir": "E",
+                    "angle": 94
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            },
+            {
+                "date": "2022-08-12T15:00:00",
+                "weather": "sunny",
+                "icon": 2,
+                "summary": "Sunny",
+                "temperature": 89.8,
+                "wind": {
+                    "speed": 10.4,
+                    "dir": "E",
+                    "angle": 101
+                },
+                "cloud_cover": {
+                    "total": 0.0
+                },
+                "precipitation": {
+                    "total": 0.0,
+                    "type": "none"
+                }
+            }
+        ]
+    },
+    "daily": null
+}
