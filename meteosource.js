@@ -327,6 +327,79 @@
             }
             return completeRes
         }
+
+        async getAirQuality(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["lat", "lon", "placeId", "tz", "lang"])
+            let url = this.#baseUrl + this.#tier + "/air_quality"
+            let args = {lat: options.lat, lon: options.lon, place_id: options.placeId,
+                        timezone: "utc", language: options.lang}
+
+            let res = await this.#httpComposed(url, args)
+
+            let usedTimezone = options.tz ? options.tz : "UTC"
+            let hourStr2hourData = {}
+            res.data.forEach(hourData => {
+                hourStr2hourData[hourData.date] = hourData
+                hourData.date = this.#convertCheckDateTime(hourData.date, true).setZone(usedTimezone)
+            })
+            res.getData = hourDate => {
+                hourDate = this.#convertCheckDateTime(hourDate, false)
+                return hourStr2hourData[hourDate.setZone("UTC").startOf("hour").toISO().substr(0, 19)]
+            }
+            res.toString = function() {
+                return "<AirQuality for lat: " + res.lat + ", lon: " + res.lon + ">"
+            }
+            res.data.toString = function() {
+                return "<AirQuality data with " + res.data.length + " timesteps from " +
+                    res.data[0].date.toISO().substr(0, 19) + " to " + res.data[res.data.length-1].date.toISO().substr(0, 19)
+            }
+            return res
+        }
+
+        async getNearestPlace(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["lat", "lon", "lang"])
+            let url = this.#baseUrl + this.#tier + "/nearest_place"
+            let args = {lat: options.lat, lon: options.lon, language: options.lang}
+
+            let res = await this.#httpComposed(url, args)
+
+            res.toString = function() {
+                return "<Place " + res.name + " (" + res.place_id + "), " + res.country + ">"
+            }
+            return res
+        }
+
+        async findPlaces(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["text", "lang"])
+            let url = this.#baseUrl + this.#tier + "/find_places"
+            let args = {text: options.text, language: options.lang}
+
+            return await this.#httpComposedPlaces(url, args)
+        }
+
+        async findPlacesPrefix(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["text", "lang"])
+            let url = this.#baseUrl + this.#tier + "/find_places_prefix"
+            let args = {text: options.text, language: options.lang}
+
+            return await this.#httpComposedPlaces(url, args)
+        }
+
+        async #httpComposedPlaces(url, args) {
+            let res = await this.#httpComposed(url, args)
+
+            res.forEach(place => {
+                place.toString = function() {
+                    return "<Place " + place.name + " (" + place.place_id + "), " + place.country + ">"
+                }
+            })
+            return res
+        }
+
         #httpComposed(url, args) {
             let argsCleaned = "?key=" + this.#apiKey
             Object.keys(args).forEach(key => {
