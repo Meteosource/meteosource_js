@@ -188,12 +188,12 @@ describe('meteosource offline', function () {
     describe('#getAirQuality', function () {
         it('composes the request URL from the options', async function () {
             let m = new meteosource.Meteosource(apiKey, "flexi")
-            await m.getAirQuality({placeId: "london", lang: "en"})
+            await m.getAirQuality({placeId: "london"})
             let url = requestedUrls[0]
             assert.equal(url.pathname, "/api/v1/flexi/air_quality")
             assert.equal(url.searchParams.get("key"), apiKey)
             assert.equal(url.searchParams.get("place_id"), "london")
-            assert.equal(url.searchParams.get("language"), "en")
+            assert.equal(url.searchParams.has("language"), false)
             assert.equal(url.searchParams.get("timezone"), "utc")
         })
         it('accepts lat+lon instead of placeId', async function () {

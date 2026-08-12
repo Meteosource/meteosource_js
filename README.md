@@ -102,7 +102,6 @@ let airQuality = await m.getAirQuality({
     lat: null,  // You can specify lat+lon instead of placeId
     lon: null,
     tz: 'UTC',  // Defaults to 'UTC', regardless of the point location
-    lang: 'en',
 })
 
 console.log(airQuality.data[0].air_quality)  // air quality index for the first hour

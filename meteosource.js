@@ -330,10 +330,12 @@
 
         async getAirQuality(options) {
             this.#checkInitialized()
-            this.#checkLimitedOptions(options, ["lat", "lon", "placeId", "tz", "lang"])
+            this.#checkLimitedOptions(options, ["lat", "lon", "placeId", "tz"])
             let url = this.#baseUrl + this.#tier + "/air_quality"
+            // Note: the air_quality endpoint does not accept a language
+            // parameter (its data is numeric only), unlike the other endpoints.
             let args = {lat: options.lat, lon: options.lon, place_id: options.placeId,
-                        timezone: "utc", language: options.lang}
+                        timezone: "utc"}
 
             let res = await this.#httpComposed(url, args)
 
