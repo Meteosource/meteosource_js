@@ -1,13 +1,13 @@
 var assert = require('assert')
 var luxon = require('luxon')
-var meteosource = require(".")
+var meteosource = require("..")
 
-if(process.env.API_KEY)
-    var apiKey = process.env.API_KEY
-else
-    throw new Error("ENV variable API_KEY must be set")
+// These tests exercise the live API and require the API_KEY env variable
+// (a flexi tier key); without it the whole suite is skipped.
+var apiKey = process.env.API_KEY
+var describeLive = apiKey ? describe : describe.skip
 
-describe('meteosource.Meteosource', function () {
+describeLive('meteosource live API', function () {
     this.timeout(5000)
     describe('#getPointForecast', function () {
         it('completes', function (done) {
@@ -92,6 +92,35 @@ describe('meteosource.Meteosource', function () {
             let m = new meteosource.Meteosource(apiKey, "flexi")
             let q = await m.getTimeMachine({placeId: "prague", dateFrom: "2022-03-03", dateTo: "2022-03-05"})
             assert.equal(+q.getData("2022-03-03T00:00:00Z").date, +q.data[0].date)
+        })
+    })
+    describe('#getAirQuality', function () {
+        it('completes and converts the dates', async function () {
+            let m = new meteosource.Meteosource(apiKey, "flexi")
+            let q = await m.getAirQuality({placeId: "london"})
+            assert.ok(q.data.length > 0)
+            assert.ok(q.data.every(h => luxon.DateTime.isDateTime(h.date)))
+        })
+    })
+    describe('#getNearestPlace', function () {
+        it('finds london', async function () {
+            let m = new meteosource.Meteosource(apiKey, "flexi")
+            let place = await m.getNearestPlace({lat: 51.50853, lon: -0.1257})
+            assert.equal(place.place_id, "london")
+        })
+    })
+    describe('#findPlaces', function () {
+        it('finds london', async function () {
+            let m = new meteosource.Meteosource(apiKey, "flexi")
+            let places = await m.findPlaces({text: "london"})
+            assert.ok(places.some(p => p.place_id === "london"))
+        })
+    })
+    describe('#findPlacesPrefix', function () {
+        it('finds london by prefix', async function () {
+            let m = new meteosource.Meteosource(apiKey, "flexi")
+            let places = await m.findPlacesPrefix({text: "lond"})
+            assert.ok(places.some(p => p.place_id === "london"))
         })
     })
 });

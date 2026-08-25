@@ -1,0 +1,57 @@
+[
+    {
+        "name": "London",
+        "place_id": "london",
+        "adm_area1": "England",
+        "adm_area2": "Greater London",
+        "country": "United Kingdom",
+        "lat": "51.50853N",
+        "lon": "0.12574W",
+        "timezone": "Europe/London",
+        "type": "settlement"
+    },
+    {
+        "name": "Londrina",
+        "place_id": "londrina",
+        "adm_area1": "Paran\u00e1",
+        "adm_area2": "Londrina",
+        "country": "Brazil",
+        "lat": "23.31028S",
+        "lon": "51.16278W",
+        "timezone": "America/Sao_Paulo",
+        "type": "settlement"
+    },
+    {
+        "name": "London",
+        "place_id": "london-6058560",
+        "adm_area1": "Ontario",
+        "adm_area2": null,
+        "country": "Canada",
+        "lat": "42.98339N",
+        "lon": "81.23304W",
+        "timezone": "America/Toronto",
+        "type": "settlement"
+    },
+    {
+        "name": "Brent",
+        "place_id": "brent",
+        "adm_area1": "England",
+        "adm_area2": "Greater London",
+        "country": "United Kingdom",
+        "lat": "51.55306N",
+        "lon": "0.3023W",
+        "timezone": "Europe/London",
+        "type": "settlement"
+    },
+    {
+        "name": "Bexley",
+        "place_id": "bexley",
+        "adm_area1": "England",
+        "adm_area2": "Greater London",
+        "country": "United Kingdom",
+        "lat": "51.44162N",
+        "lon": "0.14866E",
+        "timezone": "Europe/London",
+        "type": "settlement"
+    }
+]

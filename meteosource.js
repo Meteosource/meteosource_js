@@ -147,13 +147,12 @@
             res.toString = function() {
                 return "<Forecast for lat: " + res.lat + ", lon: " + res.lon + ">"
             }
-            if(res.hourly !== null) {
+            if(res.hourly !== null && res.hourly !== undefined) {
                 res.hourly.toString = function() {
                     return "<Hourly data with " + res.hourly.data.length + " timesteps from " +
                         res.hourly.data[0].date.toISO().substr(0, 19) + " to " + res.hourly.data[res.hourly.data.length-1].date.toISO().substr(0, 19)
                 }
                 let hourStr2hourData = {}
-                let luxon = this.#luxon
                 res.hourly.data.forEach(hourData => {
                     hourStr2hourData[hourData.date] = hourData
                     hourData.date = this.#convertCheckDateTime(hourData.date, true).setZone(usedTimezone)
@@ -163,29 +162,27 @@
                     return hourStr2hourData[hourDate.setZone("UTC").startOf("hour").toISO().substr(0, 19)]
                 }
             }
-            if(res.daily !== null) {
+            if(res.daily !== null && res.daily !== undefined) {
                 res.daily.toString = function() {
                     return "<Daily data with " + res.daily.data.length + " steps from " +
                         res.daily.data[0].day.toISO().substr(0, 10) +
                         " to " + res.daily.data[res.daily.data.length-1].day.toISO().substr(0, 10)
                 }
                 let dayStr2dayData = {}
-                let luxon = this.#luxon
                 res.daily.data.forEach(dayData => {
                     dayStr2dayData[dayData.day] = dayData
-                    dayData.day = luxon.DateTime.fromISO(dayData.day, {zone: usedTimezone})
+                    dayData.day = this.#luxon.DateTime.fromISO(dayData.day, {zone: usedTimezone})
                 })
                 res.daily.getData = day => {
                     day = this.#convertCheckDateTime(day, false)
                     return dayStr2dayData[day.toISO().substr(0, 10)]
                 }
             }
-            if(res.minutely !== null) {
-                let luxon = this.#luxon
+            if(res.minutely !== null && res.minutely !== undefined) {
                 let str2minuteData = {}
                 res.minutely.data.forEach(minuteData => {
                     str2minuteData[minuteData.date] = minuteData
-                    minuteData.date = luxon.DateTime.fromISO(minuteData.date + "Z", {zone: usedTimezone})
+                    minuteData.date = this.#luxon.DateTime.fromISO(minuteData.date + "Z", {zone: usedTimezone})
                 })
                 res.minutely.toString = function() {
                     return "<Minutely data with " + res.minutely.data.length + " timesteps from " +
@@ -197,12 +194,12 @@
                     return str2minuteData[date.setZone("UTC").startOf("minute").toISO().substr(0, 19)]
                 }
             }
-            if(res.current !== null) {
+            if(res.current !== null && res.current !== undefined) {
                 res.current.toString = function() {
                     return "<Current data>"
                 }
             }
-            if(res.alerts !== null) {
+            if(res.alerts !== null && res.alerts !== undefined) {
                 res.alerts.data.forEach(alertData => {
                     alertData.onset = this.#luxon.DateTime.fromISO(alertData.onset + "Z", {zone: usedTimezone})
                     alertData.expires = this.#luxon.DateTime.fromISO(alertData.expires + "Z", {zone: usedTimezone})
@@ -330,6 +327,81 @@
             }
             return completeRes
         }
+
+        async getAirQuality(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["lat", "lon", "placeId", "tz"])
+            let url = this.#baseUrl + this.#tier + "/air_quality"
+            // Note: the air_quality endpoint does not accept a language
+            // parameter (its data is numeric only), unlike the other endpoints.
+            let args = {lat: options.lat, lon: options.lon, place_id: options.placeId,
+                        timezone: "utc"}
+
+            let res = await this.#httpComposed(url, args)
+
+            let usedTimezone = options.tz ? options.tz : "UTC"
+            let hourStr2hourData = {}
+            res.data.forEach(hourData => {
+                hourStr2hourData[hourData.date] = hourData
+                hourData.date = this.#convertCheckDateTime(hourData.date, true).setZone(usedTimezone)
+            })
+            res.getData = hourDate => {
+                hourDate = this.#convertCheckDateTime(hourDate, false)
+                return hourStr2hourData[hourDate.setZone("UTC").startOf("hour").toISO().substr(0, 19)]
+            }
+            res.toString = function() {
+                return "<AirQuality for lat: " + res.lat + ", lon: " + res.lon + ">"
+            }
+            res.data.toString = function() {
+                return "<AirQuality data with " + res.data.length + " timesteps from " +
+                    res.data[0].date.toISO().substr(0, 19) + " to " + res.data[res.data.length-1].date.toISO().substr(0, 19)
+            }
+            return res
+        }
+
+        async getNearestPlace(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["lat", "lon", "lang"])
+            let url = this.#baseUrl + this.#tier + "/nearest_place"
+            let args = {lat: options.lat, lon: options.lon, language: options.lang}
+
+            let res = await this.#httpComposed(url, args)
+
+            res.toString = function() {
+                return "<Place " + res.name + " (" + res.place_id + "), " + res.country + ">"
+            }
+            return res
+        }
+
+        async findPlaces(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["text", "lang"])
+            let url = this.#baseUrl + this.#tier + "/find_places"
+            let args = {text: options.text, language: options.lang}
+
+            return await this.#httpComposedPlaces(url, args)
+        }
+
+        async findPlacesPrefix(options) {
+            this.#checkInitialized()
+            this.#checkLimitedOptions(options, ["text", "lang"])
+            let url = this.#baseUrl + this.#tier + "/find_places_prefix"
+            let args = {text: options.text, language: options.lang}
+
+            return await this.#httpComposedPlaces(url, args)
+        }
+
+        async #httpComposedPlaces(url, args) {
+            let res = await this.#httpComposed(url, args)
+
+            res.forEach(place => {
+                place.toString = function() {
+                    return "<Place " + place.name + " (" + place.place_id + "), " + place.country + ">"
+                }
+            })
+            return res
+        }
+
         #httpComposed(url, args) {
             let argsCleaned = "?key=" + this.#apiKey
             Object.keys(args).forEach(key => {
@@ -356,7 +428,7 @@
     }
 
     exports.Meteosource = Meteosource
-    exports.version = "1.0.1"
+    exports.version = "1.1.0"
     exports.tiersAvailable = tiersAvailable
 
     return exports

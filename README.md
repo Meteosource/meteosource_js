@@ -10,9 +10,9 @@ The source code is available in the file ``meteosource.js`` and requires the dat
 
 ```HTML
 <script src="https://www.meteosource.com/js/libs/meteosource.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
-<script>document.write(meteosource.version)</script> <!-- returns 1.0.1 -->
+<script>document.write(meteosource.version)</script> <!-- returns 1.1.0 -->
 ```
 
 ### Installation: NPM (Node.js)
@@ -25,7 +25,7 @@ $ npm install meteosource
 $ node
 > meteosource = require("meteosource")
 > meteosource.version
-'1.0.1'
+'1.1.0'
 ```
 
 
@@ -92,6 +92,41 @@ let timeMachine = await m.getTimeMachine({
 Note that the historical weather data are always retrieved for full UTC days. If you specify a different timezone, the datetimes get converted, but they will cover the full UTC, not the local day.
 
 If you pass an array of dates to the `date` parameter, the days will be inserted into the inner structures in the order they are being iterated over. This affects time indexing by integer (see below). An API request is made for each day, even when you specify a date range.
+
+### Air quality
+To get the hourly air quality forecast (pollutant concentrations and air quality index), use the `getAirQuality()` method. You have to specify either the coordinates of the place (`lat` + `lon`) or the `placeId`:
+
+```javascript
+let airQuality = await m.getAirQuality({
+    placeId: 'london',  // ID of the place you want the air quality for
+    lat: null,  // You can specify lat+lon instead of placeId
+    lon: null,
+    tz: 'UTC',  // Defaults to 'UTC', regardless of the point location
+})
+
+console.log(airQuality.data[0].air_quality)  // air quality index for the first hour
+console.log(airQuality.getData("2026-07-28T02:00:00Z"))  // data for a specific hour
+```
+
+The `date` of each item in `data` is converted to `luxon.DateTime`, and the object supports the same `getData()` time indexing as the other endpoints (see below).
+
+### Finding places
+To search for places by name, use the `findPlaces()` method, or `findPlacesPrefix()` for a prefix search (useful for autocomplete forms). Both return an array of places:
+
+```javascript
+let places = await m.findPlaces({text: 'london', lang: 'en'})
+let placesByPrefix = await m.findPlacesPrefix({text: 'lond'})
+
+console.log(places[0].toString())  // <Place London (london), United Kingdom>
+console.log(places[0].place_id)  // 'london'
+```
+
+To get the nearest named place for given GPS coordinates, use the `getNearestPlace()` method:
+
+```javascript
+let place = await m.getNearestPlace({lat: 51.50853, lon: -0.1257})
+console.log(place.place_id)  // 'london'
+```
 
 ## Working with the weather data
 All of the data objects have overloaded `toString()` methods, so you can use them get useful information about the objects:
